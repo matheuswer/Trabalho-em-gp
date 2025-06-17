@@ -1,77 +1,95 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins",  sans-serif;
-    box-sizing: border-box;
-
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
+
 body {
-    background-color: rgb(16, 117, 117);
+  background-color: rgb(16, 117, 117);
 }
 
-.app{
-    background-color: rgb(255, 255, 255);
-    width:90%;
-    max-width: 600px;
-    margin:100px auto 0;
-    padding: 30px;
+.app {
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  max-width: 600px;
+  margin: 100px auto 0;
+  padding: 30px;
+  border-radius: 9%;
 }
 
 .app h1 {
-    color: black;
-    font-weight: 600;
-    border-bottom: 1px solid rgb(1, 85, 29) ;
-    padding-bottom: 30px;
+  color: black;
+  font-weight: 600;
+  border-bottom: 1px solid rgb(1, 85, 29);
+  padding-bottom: 30px;
 }
 
 .quiz {
-    padding: 20px 0;
-} 
+  padding: 20px 0;
+}
 
 .quiz h2 {
-    font-size: 18px;
-    color: rgb(22, 126, 139);
-    font-weight: 600;
+  font-size: 18px;
+  color: rgb(22, 126, 139);
+  font-weight: 600;
 }
 
 .btn {
-    background-color: rgb(68, 180, 147);
-    color: rgb(10, 3, 3);
-    font-weight: 500;
-    width: 100%;
-    border: 1px solid yellow;
-    padding: 10px;
-    margin: 10px 0;
-    text-align: left;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-.btn:hover:not(:disabled){
-    background-color: black;
-    color: white;
+  background-color: rgb(68, 180, 147);
+  color: rgb(10, 3, 3);
+  font-weight: 500;
+  width: 100%;
+  border: 1px solid yellow;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.btn:disabled{
-    cursor: no-drop;
+.btn:hover:not(:disabled) {
+  background-color: black;
+  color: white;
 }
+
+.btn:disabled {
+  cursor: no-drop;
+}
+
+/* Botão "Próximo" */
 #proximo-btn {
-    background-color: rgb(89, 88, 92);
-    color: rgb(255, 255, 255);
-    font-weight: 500;
-    width: 150px;
-    border:  0;
-    padding: 10px;
-    margin: 20px;
-    border-radius:  4px;
-    cursor: pointer;
-    display: none;
+  background-color: rgb(89, 88, 92);
+  color: white;
+  font-weight: 500;
+  width: 150px;
+  border: 0;
+  padding: 10px;
+  margin: 20px 10px 0 0;
+  border-radius: 4px;
+  cursor: pointer;
+  display: none;
+}
+
+/* Botão "Voltar" */
+#voltar-btn {
+  background-color: rgb(117, 117, 117);
+  color: white;
+  font-weight: 500;
+  width: 150px;
+  border: 0;
+  padding: 10px;
+  margin: 20px 10px 0 0;
+  border-radius: 4px;
+  cursor: pointer;
+  display: none;
 }
 
 .correct {
-    background-color: rgb(19, 201, 19);
+  background-color: rgb(19, 201, 19);
 }
 
 .incorrect {
-    background-color: rgb(182, 20, 20);
+  background-color: rgb(182, 20, 20);
 }
