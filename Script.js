@@ -50,12 +50,19 @@ const questaoEl = document.getElementById("questao");
 const botoesEl = document.querySelectorAll(".btn");
 const proximoBtn = document.getElementById("proximo-btn");
 const voltarBtn = document.getElementById("voltar-btn");
+const quizContainer = document.getElementById("quiz-container");
 
 let indiceAtual = 0;
-let pontuacao = 0;
-
-// Armazena quais perguntas foram respondidas
 const foiRespondida = new Array(questoes.length).fill(false);
+const respostas = new Array(questoes.length).fill(null);
+
+function animarTransicao(callback) {
+  quizContainer.classList.remove("show");
+  setTimeout(() => {
+    callback();
+    quizContainer.classList.add("show");
+  }, 300);
+}
 
 function mostrarQuestao() {
   const atual = questoes[indiceAtual];
@@ -64,81 +71,64 @@ function mostrarQuestao() {
   atual.alternativas.forEach((alt, index) => {
     const botao = botoesEl[index];
     botao.textContent = alt.text;
-    botao.dataset.correct = alt.correct;
-
-    // Restabelecer evento se não foi respondida ainda
-    if (!foiRespondida[indiceAtual]) {
-      botao.onclick = () => selecionarAlternativa(botao);
-      botao.disabled = false;
-      botao.classList.remove("correct", "incorrect");
-    } else {
-      // Se já foi respondida, manter estado visual
-      botao.onclick = null;
-      botao.disabled = true;
-    }
+    botao.classList.remove("correct", "incorrect");
+    botao.disabled = foiRespondida[indiceAtual];
+    botao.onclick = foiRespondida[indiceAtual] ? null : () => selecionarAlternativa(index);
   });
 
-  // Controle dos botões
   proximoBtn.style.display = "inline-block";
   voltarBtn.style.display = indiceAtual > 0 ? "inline-block" : "none";
-
-  // Verifica se a pergunta atual foi respondida
-  const jaFoiRespondida = foiRespondida[indiceAtual];
-  proximoBtn.disabled = !jaFoiRespondida;
+  proximoBtn.disabled = !foiRespondida[indiceAtual];
 }
 
-function selecionarAlternativa(botao) {
-  const correto = botao.dataset.correct === "true";
-  if (correto) {
-    botao.classList.add("correct");
-    pontuacao++;
-  } else {
-    botao.classList.add("incorrect");
-  }
-
-  // Marca a pergunta como respondida
+function selecionarAlternativa(index) {
+  respostas[indiceAtual] = index;
   foiRespondida[indiceAtual] = true;
   botoesEl.forEach(btn => btn.disabled = true);
-  proximoBtn.disabled = false; // Libera o próximo
+  proximoBtn.disabled = false;
+
+  setTimeout(() => {
+    if (indiceAtual < questoes.length - 1) {
+      indiceAtual++;
+      animarTransicao(mostrarQuestao);
+    } else {
+      animarTransicao(mostrarResultado);
+    }
+  }, 300);
 }
 
 function proximoHandler() {
-  if (!foiRespondida[indiceAtual]) {
-    alert("Selecione uma alternativa antes de continuar.");
-    return;
-  }
-
-  indiceAtual++;
-
-  if (indiceAtual < questoes.length) {
-    mostrarQuestao();
+  if (indiceAtual < questoes.length - 1) {
+    indiceAtual++;
+    animarTransicao(mostrarQuestao);
   } else {
-    mostrarResultado();
+    animarTransicao(mostrarResultado);
   }
 }
 
 function voltarHandler() {
   if (indiceAtual > 0) {
     indiceAtual--;
-    mostrarQuestao();
+    animarTransicao(mostrarQuestao);
   }
 }
 
 function mostrarResultado() {
+  const pontuacao = respostas.reduce((acc, resposta, i) => {
+    return resposta !== null && questoes[i].alternativas[resposta].correct ? acc + 1 : acc;
+  }, 0);
+
   questaoEl.textContent = `Você acertou ${pontuacao} de ${questoes.length} questões!`;
   botoesEl.forEach(btn => btn.style.display = "none");
   proximoBtn.textContent = "Reiniciar";
   voltarBtn.style.display = "none";
-
-  proximoBtn.removeEventListener("click", proximoHandler);
-  proximoBtn.addEventListener("click", reiniciarQuiz);
+  proximoBtn.onclick = reiniciarQuiz;
 }
 
 function reiniciarQuiz() {
   indiceAtual = 0;
-  pontuacao = 0;
+  respostas.fill(null);
   foiRespondida.fill(false);
-
   botoesEl.forEach(btn => {
     btn.style.display = "block";
     btn.disabled = false;
@@ -146,16 +136,15 @@ function reiniciarQuiz() {
   });
 
   proximoBtn.textContent = "Próximo";
-  proximoBtn.disabled = false;
-  proximoBtn.removeEventListener("click", reiniciarQuiz);
-  proximoBtn.addEventListener("click", proximoHandler);
+  proximoBtn.onclick = proximoHandler;
 
-  mostrarQuestao();
+  animarTransicao(mostrarQuestao);
 }
 
-// Eventos iniciais
-proximoBtn.addEventListener("click", proximoHandler);
-voltarBtn.addEventListener("click", voltarHandler);
+proximoBtn.onclick = proximoHandler;
+voltarBtn.onclick = voltarHandler;
 
-// Início do quiz
-mostrarQuestao();
+window.onload = () => {
+  quizContainer.classList.add("show");
+  mostrarQuestao();
+};
