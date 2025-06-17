@@ -2,46 +2,46 @@ const questoes = [
   {
     questao: "1- O que significa 'HTML'?",
     alternativas: [
-      { id: 1, text: "HyperText Markup Language", correct: true },
-      { id: 2, text: "Home Tool Markup Language", correct: false },
-      { id: 3, text: "Hyperlinks and Text Markup Language", correct: false },
-      { id: 4, text: "Hyperlinking Text Mark Language", correct: false }
+      { text: "HyperText Markup Language", correct: true },
+      { text: "Home Tool Markup Language", correct: false },
+      { text: "Hyperlinks and Text Markup Language", correct: false },
+      { text: "Hyperlinking Text Mark Language", correct: false }
     ]
   },
   {
     questao: "2- Qual estrutura de repetição executa um bloco enquanto uma condição for verdadeira?",
     alternativas: [
-      { id: 1, text: "if", correct: false },
-      { id: 2, text: "while", correct: true },
-      { id: 3, text: "switch", correct: false },
-      { id: 4, text: "function", correct: false }
+      { text: "if", correct: false },
+      { text: "while", correct: true },
+      { text: "switch", correct: false },
+      { text: "function", correct: false }
     ]
   },
   {
     questao: "3- Qual o resultado da expressão lógica: !(true && false)?",
     alternativas: [
-      { id: 1, text: "true", correct: true },
-      { id: 2, text: "false", correct: false },
-      { id: 3, text: "undefined", correct: false },
-      { id: 4, text: "null", correct: false }
+      { text: "true", correct: true },
+      { text: "false", correct: false },
+      { text: "undefined", correct: false },
+      { text: "null", correct: false }
     ]
   },
   {
     questao: "4- Qual palavra-chave é usada para declarar uma função em JavaScript?",
     alternativas: [
-      { id: 1, text: "function", correct: true },
-      { id: 2, text: "var", correct: false },
-      { id: 3, text: "let", correct: false },
-      { id: 4, text: "if", correct: false }
+      { text: "function", correct: true },
+      { text: "var", correct: false },
+      { text: "let", correct: false },
+      { text: "if", correct: false }
     ]
   },
   {
     questao: "5- Qual operador compara igualdade estrita em JavaScript?",
     alternativas: [
-      { id: 1, text: "=", correct: false },
-      { id: 2, text: "==", correct: false },
-      { id: 3, text: "===", correct: true },
-      { id: 4, text: "=>", correct: false }
+      { text: "=", correct: false },
+      { text: "==", correct: false },
+      { text: "===", correct: true },
+      { text: "=>", correct: false }
     ]
   }
 ];
@@ -54,6 +54,9 @@ const voltarBtn = document.getElementById("voltar-btn");
 let indiceAtual = 0;
 let pontuacao = 0;
 
+// Armazena quais perguntas foram respondidas
+const foiRespondida = new Array(questoes.length).fill(false);
+
 function mostrarQuestao() {
   const atual = questoes[indiceAtual];
   questaoEl.textContent = atual.questao;
@@ -62,16 +65,26 @@ function mostrarQuestao() {
     const botao = botoesEl[index];
     botao.textContent = alt.text;
     botao.dataset.correct = alt.correct;
-    botao.disabled = false;
-    botao.classList.remove("correct", "incorrect");
-    botao.onclick = () => selecionarAlternativa(botao);
+
+    // Restabelecer evento se não foi respondida ainda
+    if (!foiRespondida[indiceAtual]) {
+      botao.onclick = () => selecionarAlternativa(botao);
+      botao.disabled = false;
+      botao.classList.remove("correct", "incorrect");
+    } else {
+      // Se já foi respondida, manter estado visual
+      botao.onclick = null;
+      botao.disabled = true;
+    }
   });
 
-  // Mostra botão "Próximo" sempre
-  proximoBtn.style.display = "block";
+  // Controle dos botões
+  proximoBtn.style.display = "inline-block";
+  voltarBtn.style.display = indiceAtual > 0 ? "inline-block" : "none";
 
-  // Mostra botão "Voltar" se não for a primeira
-  voltarBtn.style.display = indiceAtual > 0 ? "block" : "none";
+  // Verifica se a pergunta atual foi respondida
+  const jaFoiRespondida = foiRespondida[indiceAtual];
+  proximoBtn.disabled = !jaFoiRespondida;
 }
 
 function selecionarAlternativa(botao) {
@@ -83,11 +96,20 @@ function selecionarAlternativa(botao) {
     botao.classList.add("incorrect");
   }
 
+  // Marca a pergunta como respondida
+  foiRespondida[indiceAtual] = true;
   botoesEl.forEach(btn => btn.disabled = true);
+  proximoBtn.disabled = false; // Libera o próximo
 }
 
 function proximoHandler() {
+  if (!foiRespondida[indiceAtual]) {
+    alert("Selecione uma alternativa antes de continuar.");
+    return;
+  }
+
   indiceAtual++;
+
   if (indiceAtual < questoes.length) {
     mostrarQuestao();
   } else {
@@ -109,29 +131,31 @@ function mostrarResultado() {
   voltarBtn.style.display = "none";
 
   proximoBtn.removeEventListener("click", proximoHandler);
-  proximoBtn.onclick = reiniciarQuiz;
-  proximoBtn.style.display = "block";
+  proximoBtn.addEventListener("click", reiniciarQuiz);
 }
 
 function reiniciarQuiz() {
   indiceAtual = 0;
   pontuacao = 0;
+  foiRespondida.fill(false);
 
   botoesEl.forEach(btn => {
     btn.style.display = "block";
+    btn.disabled = false;
     btn.classList.remove("correct", "incorrect");
   });
 
   proximoBtn.textContent = "Próximo";
-  proximoBtn.onclick = null;
+  proximoBtn.disabled = false;
+  proximoBtn.removeEventListener("click", reiniciarQuiz);
   proximoBtn.addEventListener("click", proximoHandler);
 
   mostrarQuestao();
 }
 
-// Eventos
+// Eventos iniciais
 proximoBtn.addEventListener("click", proximoHandler);
 voltarBtn.addEventListener("click", voltarHandler);
 
-// Início
+// Início do quiz
 mostrarQuestao();
