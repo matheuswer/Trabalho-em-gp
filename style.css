@@ -56,8 +56,8 @@ body {
     cursor: no-drop;
 }
 #proximo-btn {
-    background-color: black;
-    color: blueviolet;
+    background-color: rgb(89, 88, 92);
+    color: rgb(255, 255, 255);
     font-weight: 500;
     width: 150px;
     border:  0;
@@ -73,5 +73,5 @@ body {
 }
 
 .incorrect {
-    background-color: red;
+    background-color: rgb(182, 20, 20);
 }
