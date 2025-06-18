@@ -36,7 +36,6 @@ body {
   color: #1f2e56; 
 }
 
-
 #questao {
   font-size: 22px;
   margin-bottom: 25px;
@@ -55,14 +54,14 @@ body {
   border-radius: 10px;
   cursor: pointer; 
   text-align: left; 
-  transition: 0.3s ease; 
+  transition: all 0.3s ease; 
 }
 
 /* Efeito dos botões quando o mouse passa por cima */
 .btn:hover:not(:disabled) {
   background-color: #4d91c6; 
   color: white;
-  transform: scale(1.02); 
+  transform: translateY(-2px); 
   box-shadow: 0 6px 10px rgba(77, 145, 198, 0.6); 
 }
 
@@ -77,19 +76,39 @@ body {
   background-color: #6c5ce7; 
   color: white;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   padding: 16px 32px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s ease;
-  margin-top: 30px;
+  transition: all 0.3s ease;
+  margin: 10px;
+  width: 100%;
+  max-width: 400px;
 }
 
-/* Efeito hover do botão "Começar Quiz" */
-#tela-inicial button:hover {
+/* Botão ativo */
+#tela-inicial button:not(:disabled):hover {
   background-color: #5a4cd4; 
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(106, 92, 231, 0.4);
+}
+
+/* Botões desabilitados na tela inicial */
+#tela-inicial button:disabled {
+  background-color: #bdc3c7;
+  color: #7f8c8d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Aviso para botões desabilitados */
+.aviso {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-top: 15px;
+  font-style: italic;
 }
 
 /* Botões "Próximo" e "Voltar" */
@@ -103,14 +122,15 @@ body {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 /* Efeito hover dos botões "Próximo" e "Voltar" */
 #proximo-btn:hover,
 #voltar-btn:hover {
   background-color: #b2aaff;
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(162, 155, 254, 0.4);
 }
 
 /* Botão "Reiniciar Quiz"  */
@@ -123,13 +143,14 @@ body {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 /* Hover do botão "Reiniciar" */
 #btn-reiniciar:hover {
   background-color: #5a4cd4;
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(106, 92, 231, 0.4);
 }
 
 /*Respostas corretas */
@@ -152,8 +173,37 @@ body {
 .selecionado {
   border: 3px solid #6c5ce7; 
   background-color: #dcd9ff; 
+  transform: translateY(-1px);
 }
 
 .escondido {
   display: none;
+}
+
+/* Navegação responsiva */
+.navegacao {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Melhorias responsivas */
+@media (max-width: 600px) {
+  .quiz-container {
+    padding: 20px;
+  }
+  
+  .quiz-container h1 {
+    font-size: 24px;
+  }
+  
+  #questao {
+    font-size: 18px;
+  }
+  
+  #tela-inicial button {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
 }
