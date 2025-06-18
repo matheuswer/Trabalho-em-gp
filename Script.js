@@ -46,105 +46,119 @@ const questoes = [
   }
 ];
 
-const questaoEl = document.getElementById("questao");
-const botoesEl = document.querySelectorAll(".btn");
-const proximoBtn = document.getElementById("proximo-btn");
-const voltarBtn = document.getElementById("voltar-btn");
-const quizContainer = document.getElementById("quiz-container");
-
 let indiceAtual = 0;
-const foiRespondida = new Array(questoes.length).fill(false);
-const respostas = new Array(questoes.length).fill(null);
 
-function animarTransicao(callback) {
-  quizContainer.classList.remove("show");
-  setTimeout(() => {
-    callback();
-    quizContainer.classList.add("show");
-  }, 300);
+// Armazena as respostas do usuário 
+let respostas = new Array(questoes.length).fill(null);
+
+let telaInicial = document.getElementById("tela-inicial");
+let quiz = document.getElementById("quiz");
+let questaoEl = document.getElementById("questao");
+let botoesEl = document.querySelectorAll(".btn");
+let proximoBtn = document.getElementById("proximo-btn");
+let voltarBtn = document.getElementById("voltar-btn");
+let resultadoEl = document.getElementById("resultado");
+let reiniciarEl = document.getElementById("reiniciar");
+let btnReiniciar = document.getElementById("btn-reiniciar");
+
+function comecarquiz() {
+  telaInicial.classList.add("escondido"); 
+  quiz.classList.remove("escondido");     
+  indiceAtual = 0;                         
+  respostas = new Array(questoes.length).fill(null); 
+  mostrarQuestao();                       
+  proximoBtn.style.display = "none";
+  voltarBtn.style.display = "none";
+  resultadoEl.classList.add("escondido");
+  reiniciarEl.classList.add("escondido");
 }
 
 function mostrarQuestao() {
-  const atual = questoes[indiceAtual];
-  questaoEl.textContent = atual.questao;
+  const atual = questoes[indiceAtual];             
+  questaoEl.textContent = atual.questao;           
 
-  atual.alternativas.forEach((alt, index) => {
-    const botao = botoesEl[index];
-    botao.textContent = alt.text;
-    botao.classList.remove("correct", "incorrect");
-    botao.disabled = foiRespondida[indiceAtual];
-    botao.onclick = foiRespondida[indiceAtual] ? null : () => selecionarAlternativa(index);
+  // Mostra cada alternativa 
+  atual.alternativas.forEach((alt, i) => {
+    const botao = botoesEl[i];                     
+    botao.textContent = alt.text;                  
+    botao.disabled = false;                        
+    botao.classList.remove("correct", "incorrect", "selecionado");
+
+    if (respostas[indiceAtual] === i) {
+      botao.classList.add("selecionado");
+    }
+
+    // Quando clicar em uma alternativa
+    botao.onclick = () => {
+      respostas[indiceAtual] = i;                  
+      botoesEl.forEach(b => b.classList.remove("selecionado"));
+      botao.classList.add("selecionado");          
+      proximoBtn.style.display = "inline-block";   
+    };
   });
 
-  proximoBtn.style.display = "inline-block";
-  voltarBtn.style.display = indiceAtual > 0 ? "inline-block" : "none";
-  proximoBtn.disabled = !foiRespondida[indiceAtual];
+  voltarBtn.style.display = indiceAtual === 0 ? "none" : "inline-block";
+
+  proximoBtn.textContent = indiceAtual === questoes.length - 1 ? "Finalizar" : "Próximo";
+
+  proximoBtn.style.display = respostas[indiceAtual] !== null ? "inline-block" : "none";
 }
 
-function selecionarAlternativa(index) {
-  respostas[indiceAtual] = index;
-  foiRespondida[indiceAtual] = true;
-  botoesEl.forEach(btn => btn.disabled = true);
-  proximoBtn.disabled = false;
+function avancarQuestao() {
+  if (respostas[indiceAtual] === null) {
+    alert("Por favor, selecione uma alternativa antes de continuar.");
+    return;
+  }
 
-  setTimeout(() => {
-    if (indiceAtual < questoes.length - 1) {
-      indiceAtual++;
-      animarTransicao(mostrarQuestao);
-    } else {
-      animarTransicao(mostrarResultado);
-    }
-  }, 300);
-}
-
-function proximoHandler() {
   if (indiceAtual < questoes.length - 1) {
-    indiceAtual++;
-    animarTransicao(mostrarQuestao);
+    indiceAtual++;           
+    mostrarQuestao();        
   } else {
-    animarTransicao(mostrarResultado);
+    mostrarResultado();      
   }
 }
 
-function voltarHandler() {
+function voltarQuestao() {
   if (indiceAtual > 0) {
-    indiceAtual--;
-    animarTransicao(mostrarQuestao);
+    indiceAtual--;           
+    mostrarQuestao();        
   }
 }
 
 function mostrarResultado() {
-  const pontuacao = respostas.reduce((acc, resposta, i) => {
-    return resposta !== null && questoes[i].alternativas[resposta].correct ? acc + 1 : acc;
-  }, 0);
+  quiz.classList.add("escondido");              
+  resultadoEl.classList.remove("escondido");    
 
-  questaoEl.textContent = `Você acertou ${pontuacao} de ${questoes.length} questões!`;
-  botoesEl.forEach(btn => btn.style.display = "none");
-  proximoBtn.textContent = "Reiniciar";
-  voltarBtn.style.display = "none";
-  proximoBtn.onclick = reiniciarQuiz;
-}
+  let acertos = 0;                               
+  let html = `<h1>Resultado do Quiz</h1><ul style="list-style: none; padding-left: 0;">`;
 
-function reiniciarQuiz() {
-  indiceAtual = 0;
-  respostas.fill(null);
-  foiRespondida.fill(false);
-  botoesEl.forEach(btn => {
-    btn.style.display = "block";
-    btn.disabled = false;
-    btn.classList.remove("correct", "incorrect");
+  questoes.forEach((q, i) => {
+    const correta = q.alternativas.findIndex(a => a.correct);  
+    const resposta = respostas[i];                              
+    const acertou = resposta === correta;                      
+    const cor = acertou ? "green" : "red";                      
+    const emoji = acertou ? "✅" : "❌";                        
+
+    if (acertou) acertos++;                                     
+
+    // Monta o resultado de cada pergunta
+    html += `
+      <li>
+        <strong>${q.questao}</strong><br>
+        Sua resposta: <span style="color:${cor}">${resposta !== null ? q.alternativas[resposta].text : "Não respondeu"}</span><br>
+        ${emoji} Resposta correta: ${q.alternativas[correta].text}
+      </li><br>`;
   });
 
-  proximoBtn.textContent = "Próximo";
-  proximoBtn.onclick = proximoHandler;
-
-  animarTransicao(mostrarQuestao);
+  html += `</ul>`;
+  html += `<h2>Você acertou ${acertos} de ${questoes.length} questões.</h2>`;
+  resultadoEl.innerHTML = html;                
+  reiniciarEl.classList.remove("escondido");   
 }
 
-proximoBtn.onclick = proximoHandler;
-voltarBtn.onclick = voltarHandler;
+// Quando clicar em "Reiniciar", começa tudo de novo
+btnReiniciar.addEventListener("click", comecarquiz);
 
-window.onload = () => {
-  quizContainer.classList.add("show");
-  mostrarQuestao();
-};
+// Botões "Próximo" e "Voltar"
+proximoBtn.addEventListener("click", avancarQuestao);
+voltarBtn.addEventListener("click", voltarQuestao);

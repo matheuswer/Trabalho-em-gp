@@ -7,21 +7,42 @@
   <title>Quiz</title>
 </head>
 <body>
-  <div class="app">
-    <h1>Quiz</h1>
-    <div class="quiz fade" id="quiz-container">
+
+  <!-- Container principal -->
+  <div class="quiz-container">
+
+    <!-- Tela inicial -->
+    <div id="tela-inicial">
+      <h1>Lógica de Programação</h1>
+      <button onclick="comecarquiz()">Começar Quiz</button>
+    </div>
+
+    <!-- perguntas e respostas -->
+    <div id="quiz" class="escondido">
       <h2 id="questao">Questão</h2>
       <div id="botao">
-        <button class="btn">Alternativa 1</button><br>
-        <button class="btn">Alternativa 2</button><br>
-        <button class="btn">Alternativa 3</button><br>
-        <button class="btn">Alternativa 4</button><br>
+        <button class="btn">Alternativa 1</button>
+        <button class="btn">Alternativa 2</button>
+        <button class="btn">Alternativa 3</button>
+        <button class="btn">Alternativa 4</button>
       </div>
-      <br>
-      <button id="voltar-btn">Voltar</button>
-      <button id="proximo-btn">Próximo</button>
+
+      <!-- Botões de navegação -->
+      <div class="navegacao">
+        <button id="voltar-btn">Voltar</button>
+        <button id="proximo-btn">Próximo</button>
+      </div>
+    </div>
+
+    <!-- Tela de resultado -->
+    <div id="resultado" class="escondido"></div>
+
+    <!-- Botão de reiniciar -->
+    <div id="reiniciar" class="escondido">
+      <button id="btn-reiniciar">Reiniciar Quiz</button>
     </div>
   </div>
-  <script src="script.js"></script>
+
+   <script src="script.js"></script>
 </body>
 </html>

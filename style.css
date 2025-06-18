@@ -1,85 +1,159 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
-  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; 
+  box-sizing: border-box; 
 }
 
 body {
-  background-color: rgb(16, 117, 117);
+  background: linear-gradient(135deg, #2b234e, #aa9bf5); 
+  min-height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 20px; 
 }
 
-.app {
-  background-color: rgb(255, 255, 255);
-  width: 90%;
-  max-width: 600px;
-  margin: 100px auto 0;
-  padding: 30px;
-  border-radius: 9%;
-}
-
-.app h1 {
-  color: black;
-  font-weight: 600;
-  border-bottom: 1px solid rgb(1, 85, 29);
-  padding-bottom: 30px;
-}
-
-.quiz {
-  padding: 20px 0;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.quiz.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.quiz h2 {
-  font-size: 18px;
-  color: rgb(22, 126, 139);
-  font-weight: 600;
-}
-
-.btn {
-  background-color: rgb(68, 180, 147);
-  color: rgb(10, 3, 3);
-  font-weight: 500;
+/* Container principal do quiz */
+.quiz-container {
+  background-color: white; 
   width: 100%;
-  border: 1px solid yellow;
-  padding: 10px;
-  margin: 10px 0;
-  text-align: left;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
+  max-width: 700px; 
+  padding: 40px; 
+  border-radius: 20px; 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+  text-align: center; 
+  color: #2c3e50; 
+  border: 3px solid #a8c0ff; 
 }
 
+/* título principal */
+.quiz-container h1 {
+  font-size: 32px; 
+  margin-bottom: 30px; 
+  padding-bottom: 10px; 
+  border-bottom: 2px solid #7a9eff; 
+  color: #1f2e56; 
+}
+
+
+#questao {
+  font-size: 22px;
+  margin-bottom: 25px;
+  color: #34495e;
+}
+
+/* Alternativas */
+.btn {
+  background: #eaf6ff;
+  color: #2c3e50; 
+  font-weight: 500; 
+  width: 100%; 
+  padding: 14px; 
+  margin: 10px 0; 
+  border: 2px solid #4d91c6; 
+  border-radius: 10px;
+  cursor: pointer; 
+  text-align: left; 
+  transition: 0.3s ease; 
+}
+
+/* Efeito dos botões quando o mouse passa por cima */
 .btn:hover:not(:disabled) {
-  background-color: black;
+  background-color: #4d91c6; 
   color: white;
+  transform: scale(1.02); 
+  box-shadow: 0 6px 10px rgba(77, 145, 198, 0.6); 
 }
 
+/* botões desabilitados */
 .btn:disabled {
-  cursor: no-drop;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
+/* Começar Quiz */
+#tela-inicial button {
+  background-color: #6c5ce7; 
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 30px;
+}
+
+/* Efeito hover do botão "Começar Quiz" */
+#tela-inicial button:hover {
+  background-color: #5a4cd4; 
+  transform: scale(1.05);
+}
+
+/* Botões "Próximo" e "Voltar" */
 #proximo-btn,
 #voltar-btn {
-  background-color: rgb(89, 88, 92);
-  color: white;
-  font-weight: 500;
-  width: 150px;
-  border: 0;
-  padding: 10px;
-  margin: 20px 10px 0 0;
-  border-radius: 4px;
+  background-color: #a29bfe; 
+  color: #2c3e50;
+  font-weight: bold;
+  padding: 12px 24px;
+  margin: 20px 10px 0;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  display: none;
+  transition: 0.3s ease;
 }
 
-#voltar-btn {
-  background-color: rgb(117, 117, 117);
+/* Efeito hover dos botões "Próximo" e "Voltar" */
+#proximo-btn:hover,
+#voltar-btn:hover {
+  background-color: #b2aaff;
+  transform: scale(1.05);
+}
+
+/* Botão "Reiniciar Quiz"  */
+#btn-reiniciar {
+  background-color: #6c5ce7; 
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  margin: 20px 10px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Hover do botão "Reiniciar" */
+#btn-reiniciar:hover {
+  background-color: #5a4cd4;
+  transform: scale(1.05);
+}
+
+/*Respostas corretas */
+.correct {
+  background-color: #2ecc71 !important; 
+  color: white;
+  border-color: #2ecc71;
+  box-shadow: 0 0 10px #2ecc71;
+}
+
+/*Respostas incorretas */
+.incorrect {
+  background-color: #e74c3c !important; 
+  color: white;
+  border-color: #e74c3c;
+  box-shadow: 0 0 10px #e74c3c;
+}
+
+/*Alternativa selecionada */
+.selecionado {
+  border: 3px solid #6c5ce7; 
+  background-color: #dcd9ff; 
+}
+
+.escondido {
+  display: none;
 }
