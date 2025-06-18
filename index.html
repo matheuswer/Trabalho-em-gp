@@ -13,11 +13,14 @@
 
     <!-- Tela inicial -->
     <div id="tela-inicial">
-      <h1>Lógica de Programação</h1>
-      <button onclick="comecarquiz()">Começar Quiz</button>
+      <h1>Escolha seu Quiz</h1>
+      <button onclick="comecarQuiz(0)">Quiz de Lógica da Programação</button>
+      <button onclick="comecarQuiz(1)">Quiz de Ciência</button>
+      <button onclick="comecarQuiz(2)">Quiz de Geografia</button>
+      <button onclick="comecarQuiz(3)">Quiz de Esportes</button>
     </div>
 
-    <!-- perguntas e respostas -->
+    <!-- Perguntas e respostas -->
     <div id="quiz" class="escondido">
       <h2 id="questao">Questão</h2>
       <div id="botao">
@@ -43,6 +46,6 @@
     </div>
   </div>
 
-   <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
