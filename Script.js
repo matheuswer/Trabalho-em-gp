@@ -49,6 +49,7 @@ const todosQuizzes = [
     }
   ]
   // Aqui você pode adicionar outros quizzes no futuro
+  
 ];
 
 // Variáveis globais
