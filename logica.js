@@ -1,3 +1,51 @@
+const questoes = [
+  {
+    questao: "1- O que significa 'HTML'?",
+    alternativas: [
+      { text: "HyperText Markup Language", correct: true },
+      { text: "Home Tool Markup Language", correct: false },
+      { text: "Hyperlinks and Text Markup Language", correct: false },
+      { text: "Hyperlinking Text Mark Language", correct: false }
+    ]
+  },
+  {
+    questao: "2- Qual estrutura de repetição executa um bloco enquanto uma condição for verdadeira?",
+    alternativas: [
+      { text: "if", correct: false },
+      { text: "while", correct: true },
+      { text: "switch", correct: false },
+      { text: "function", correct: false }
+    ]
+  },
+  {
+    questao: "3- Qual o resultado da expressão lógica: !(true && false)?",
+    alternativas: [
+      { text: "true", correct: true },
+      { text: "false", correct: false },
+      { text: "undefined", correct: false },
+      { text: "null", correct: false }
+    ]
+  },
+  {
+    questao: "4- Qual palavra-chave é usada para declarar uma função em JavaScript?",
+    alternativas: [
+      { text: "function", correct: true },
+      { text: "var", correct: false },
+      { text: "let", correct: false },
+      { text: "if", correct: false }
+    ]
+  },
+  {
+    questao: "5- Qual operador compara igualdade estrita em JavaScript?",
+    alternativas: [
+      { text: "=", correct: false },
+      { text: "==", correct: false },
+      { text: "===", correct: true },
+      { text: "=>", correct: false }
+    ]
+  }
+];
+
 let indiceAtual = 0;
 
 // Armazena as respostas do usuário 
