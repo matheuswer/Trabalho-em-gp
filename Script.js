@@ -1,163 +1,150 @@
-// Questões dos diferentes quizzes
-const todosQuizzes = [
-  // Quiz 0: Lógica da Programação
-  [
-    {
-      questao: "1- O que significa 'HTML'?",
-      alternativas: [
-        { text: "HyperText Markup Language", correct: true },
-        { text: "Home Tool Markup Language", correct: false },
-        { text: "Hyperlinks and Text Markup Language", correct: false },
-        { text: "Hyperlinking Text Mark Language", correct: false }
-      ]
-    },
-    {
-      questao: "2- Qual estrutura de repetição executa um bloco enquanto uma condição for verdadeira?",
-      alternativas: [
-        { text: "if", correct: false },
-        { text: "while", correct: true },
-        { text: "switch", correct: false },
-        { text: "function", correct: false }
-      ]
-    },
-    {
-      questao: "3- Qual o resultado da expressão lógica: !(true && false)?",
-      alternativas: [
-        { text: "true", correct: true },
-        { text: "false", correct: false },
-        { text: "undefined", correct: false },
-        { text: "null", correct: false }
-      ]
-    },
-    {
-      questao: "4- Qual palavra-chave é usada para declarar uma função em JavaScript?",
-      alternativas: [
-        { text: "function", correct: true },
-        { text: "var", correct: false },
-        { text: "let", correct: false },
-        { text: "if", correct: false }
-      ]
-    },
-    {
-      questao: "5- Qual operador compara igualdade estrita em JavaScript?",
-      alternativas: [
-        { text: "=", correct: false },
-        { text: "==", correct: false },
-        { text: "===", correct: true },
-        { text: "=>", correct: false }
-      ]
-    }
-  ]
-  // Aqui você pode adicionar outros quizzes no futuro
-  
+const questoes = [
+  {
+    questao: "1- O que significa 'HTML'?",
+    alternativas: [
+      { text: "HyperText Markup Language", correct: true },
+      { text: "Home Tool Markup Language", correct: false },
+      { text: "Hyperlinks and Text Markup Language", correct: false },
+      { text: "Hyperlinking Text Mark Language", correct: false }
+    ]
+  },
+  {
+    questao: "2- Qual estrutura de repetição executa um bloco enquanto uma condição for verdadeira?",
+    alternativas: [
+      { text: "if", correct: false },
+      { text: "while", correct: true },
+      { text: "switch", correct: false },
+      { text: "function", correct: false }
+    ]
+  },
+  {
+    questao: "3- Qual o resultado da expressão lógica: !(true && false)?",
+    alternativas: [
+      { text: "true", correct: true },
+      { text: "false", correct: false },
+      { text: "undefined", correct: false },
+      { text: "null", correct: false }
+    ]
+  },
+  {
+    questao: "4- Qual palavra-chave é usada para declarar uma função em JavaScript?",
+    alternativas: [
+      { text: "function", correct: true },
+      { text: "var", correct: false },
+      { text: "let", correct: false },
+      { text: "if", correct: false }
+    ]
+  },
+  {
+    questao: "5- Qual operador compara igualdade estrita em JavaScript?",
+    alternativas: [
+      { text: "=", correct: false },
+      { text: "==", correct: false },
+      { text: "===", correct: true },
+      { text: "=>", correct: false }
+    ]
+  }
 ];
 
-// Variáveis globais
-let quizAtual = null;
 let indiceAtual = 0;
-let respostas = [];
+let respostas = new Array(questoes.length).fill(null);
 
-// Cache dos elementos DOM para melhor performance
-const elementos = {
-  telaInicial: document.getElementById("tela-inicial"),
-  quiz: document.getElementById("quiz"),
-  questao: document.getElementById("questao"),
-  botoes: document.querySelectorAll(".btn"),
-  proximoBtn: document.getElementById("proximo-btn"),
-  voltarBtn: document.getElementById("voltar-btn"),
-  resultado: document.getElementById("resultado"),
-  reiniciar: document.getElementById("reiniciar"),
-  btnReiniciar: document.getElementById("btn-reiniciar")
-};
+// Elementos do DOM
+let capaInicial = document.getElementById("capa-inicial");
+let telaSelecao = document.getElementById("tela-selecao");
+let quiz = document.getElementById("quiz");
+let questaoEl = document.getElementById("questao");
+let questaoNumeroEl = document.getElementById("questao-numero");
+let botoesEl = document.querySelectorAll(".btn");
+let proximoBtn = document.getElementById("proximo-btn");
+let voltarBtn = document.getElementById("voltar-btn");
+let resultadoEl = document.getElementById("resultado");
+let reiniciarEl = document.getElementById("reiniciar");
+let btnReiniciar = document.getElementById("btn-reiniciar");
 
-// Função para começar um quiz específico
-function comecarQuiz(indiceQuiz) {
-  // Verifica se o quiz existe e está disponível
-  if (indiceQuiz !== 0) {
+// Função para ir da capa inicial para seleção de quiz
+function irParaSelecao() {
+  capaInicial.classList.add("escondido");
+  telaSelecao.classList.remove("escondido");
+}
+
+// Função para voltar da seleção para a capa
+function voltarParaCapa() {
+  telaSelecao.classList.add("escondido");
+  capaInicial.classList.remove("escondido");
+}
+
+// Função para voltar do quiz para seleção
+function voltarParaSelecao() {
+  quiz.classList.add("escondido");
+  resultadoEl.classList.add("escondido");
+  reiniciarEl.classList.add("escondido");
+  telaSelecao.classList.remove("escondido");
+  
+  // Reset do quiz
+  indiceAtual = 0;
+  respostas = new Array(questoes.length).fill(null);
+}
+
+// Função para começar o quiz
+function comecarQuiz(tipoQuiz) {
+  if (tipoQuiz !== 0) {
     alert("Este quiz ainda não está disponível!");
     return;
   }
   
-  if (!todosQuizzes[indiceQuiz]) {
-    alert("Quiz não encontrado!");
-    return;
-  }
+  telaSelecao.classList.add("escondido");
+  quiz.classList.remove("escondido");
   
-  // Inicializa o quiz
-  quizAtual = todosQuizzes[indiceQuiz];
   indiceAtual = 0;
-  respostas = new Array(quizAtual.length).fill(null);
-  
-  // Transição entre telas
-  elementos.telaInicial.classList.add("escondido");
-  elementos.quiz.classList.remove("escondido");
-  elementos.resultado.classList.add("escondido");
-  elementos.reiniciar.classList.add("escondido");
-  
-  // Mostra a primeira questão
+  respostas = new Array(questoes.length).fill(null);
   mostrarQuestao();
+  proximoBtn.style.display = "none";
+  voltarBtn.style.display = "none";
+  resultadoEl.classList.add("escondido");
+  reiniciarEl.classList.add("escondido");
 }
 
-// Função para mostrar a questão atual
 function mostrarQuestao() {
-  if (!quizAtual || indiceAtual >= quizAtual.length) return;
+  const atual = questoes[indiceAtual];
+  questaoEl.textContent = atual.questao;
   
-  const questaoAtual = quizAtual[indiceAtual];
-  elementos.questao.textContent = questaoAtual.questao;
-  
-  // Configura as alternativas
-  questaoAtual.alternativas.forEach((alternativa, indice) => {
-    const botao = elementos.botoes[indice];
-    botao.textContent = alternativa.text;
+  // Atualizar indicador de progresso
+  questaoNumeroEl.textContent = `${indiceAtual + 1}/${questoes.length}`;
+
+  // Mostrar cada alternativa
+  atual.alternativas.forEach((alt, i) => {
+    const botao = botoesEl[i];
+    botao.textContent = alt.text;
     botao.disabled = false;
-    
-    // Remove classes anteriores
-    botao.className = "btn";
-    
-    // Marca se já foi selecionada
-    if (respostas[indiceAtual] === indice) {
+    botao.classList.remove("correct", "incorrect", "selecionado");
+
+    if (respostas[indiceAtual] === i) {
       botao.classList.add("selecionado");
     }
-    
-    // Event listener otimizado
-    botao.onclick = () => selecionarResposta(indice);
+
+    // Quando clicar em uma alternativa
+    botao.onclick = () => {
+      respostas[indiceAtual] = i;
+      botoesEl.forEach(b => b.classList.remove("selecionado"));
+      botao.classList.add("selecionado");
+      proximoBtn.style.display = "inline-block";
+    };
   });
-  
-  // Configura botões de navegação
-  atualizarBotoesNavegacao();
+
+  // Controle dos botões de navegação
+  voltarBtn.style.display = indiceAtual === 0 ? "none" : "inline-block";
+  proximoBtn.textContent = indiceAtual === questoes.length - 1 ? "Finalizar" : "Próximo";
+  proximoBtn.style.display = respostas[indiceAtual] !== null ? "inline-block" : "none";
 }
 
-// Função para selecionar uma resposta
-function selecionarResposta(indice) {
-  respostas[indiceAtual] = indice;
-  
-  // Remove seleção anterior e adiciona nova
-  elementos.botoes.forEach(botao => botao.classList.remove("selecionado"));
-  elementos.botoes[indice].classList.add("selecionado");
-  
-  // Mostra botão próximo
-  elementos.proximoBtn.style.display = "inline-block";
-}
-
-// Função para atualizar botões de navegação
-function atualizarBotoesNavegacao() {
-  // Botão voltar
-  elementos.voltarBtn.style.display = indiceAtual === 0 ? "none" : "inline-block";
-  
-  // Botão próximo
-  const temResposta = respostas[indiceAtual] !== null;
-  elementos.proximoBtn.style.display = temResposta ? "inline-block" : "none";
-  elementos.proximoBtn.textContent = indiceAtual === quizAtual.length - 1 ? "Finalizar" : "Próximo";
-}
-
-// Função para avançar questão
 function avancarQuestao() {
   if (respostas[indiceAtual] === null) {
     alert("Por favor, selecione uma alternativa antes de continuar.");
     return;
   }
-  
-  if (indiceAtual < quizAtual.length - 1) {
+
+  if (indiceAtual < questoes.length - 1) {
     indiceAtual++;
     mostrarQuestao();
   } else {
@@ -165,7 +152,6 @@ function avancarQuestao() {
   }
 }
 
-// Função para voltar questão
 function voltarQuestao() {
   if (indiceAtual > 0) {
     indiceAtual--;
@@ -173,86 +159,58 @@ function voltarQuestao() {
   }
 }
 
-// Função para mostrar resultado
 function mostrarResultado() {
-  elementos.quiz.classList.add("escondido");
-  elementos.resultado.classList.remove("escondido");
-  
+  quiz.classList.add("escondido");
+  resultadoEl.classList.remove("escondido");
+
   let acertos = 0;
-  let html = `<h1>Resultado do Quiz</h1><ul style="list-style: none; padding-left: 0;">`;
-  
-  quizAtual.forEach((questao, indice) => {
-    const respostaCorreta = questao.alternativas.findIndex(alt => alt.correct);
-    const respostaUsuario = respostas[indice];
-    const acertou = respostaUsuario === respostaCorreta;
-    
-    if (acertou) acertos++;
-    
-    const cor = acertou ? "green" : "red";
+  let html = `<h1>🎉 Resultado do Quiz</h1><ul style="list-style: none; padding-left: 0;">`;
+
+  questoes.forEach((q, i) => {
+    const correta = q.alternativas.findIndex(a => a.correct);
+    const resposta = respostas[i];
+    const acertou = resposta === correta;
+    const cor = acertou ? "#00b894" : "#e17055";
     const emoji = acertou ? "✅" : "❌";
-    const textoResposta = respostaUsuario !== null ? 
-      questao.alternativas[respostaUsuario].text : "Não respondeu";
-    
+
+    if (acertou) acertos++;
+
+    // Monta o resultado de cada pergunta
     html += `
-      <li style="margin-bottom: 20px; text-align: left;">
-        <strong>${questao.questao}</strong><br>
-        <span style="color: #666;">Sua resposta:</span> 
-        <span style="color: ${cor}; font-weight: bold;">${textoResposta}</span><br>
-        ${emoji} <span style="color: #666;">Resposta correta:</span> 
-        <span style="color: green; font-weight: bold;">${questao.alternativas[respostaCorreta].text}</span>
+      <li>
+        <strong>${q.questao}</strong><br>
+        <strong>Sua resposta:</strong> <span style="color:${cor}; font-weight: 600;">${resposta !== null ? q.alternativas[resposta].text : "Não respondeu"}</span><br>
+        ${emoji} <strong>Resposta correta:</strong> <span style="color: #00b894; font-weight: 600;">${q.alternativas[correta].text}</span>
       </li>`;
   });
-  
+
   html += `</ul>`;
   
-  // Calcula porcentagem
-  const porcentagem = Math.round((acertos / quizAtual.length) * 100);
+  // Mensagem personalizada baseada na pontuação
   let mensagem = "";
+  let porcentagem = Math.round((acertos / questoes.length) * 100);
   
   if (porcentagem >= 80) {
-    mensagem = "🎉 Excelente! Você domina o assunto!";
+    mensagem = "🏆 Excelente! Você domina o assunto!";
   } else if (porcentagem >= 60) {
-    mensagem = "👍 Bom trabalho! Continue estudando!";
+    mensagem = "👏 Muito bom! Continue estudando!";
+  } else if (porcentagem >= 40) {
+    mensagem = "📚 Bom esforço! Que tal revisar alguns conceitos?";
   } else {
-    mensagem = "📚 Continue estudando, você vai melhorar!";
+    mensagem = "💪 Não desista! A prática leva à perfeição!";
   }
   
-  html += `
-    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
-      <h2 style="color: #2c3e50;">Você acertou ${acertos} de ${quizAtual.length} questões</h2>
-      <p style="font-size: 18px; color: #34495e;">Porcentagem: ${porcentagem}%</p>
-      <p style="font-size: 16px; margin-top: 10px;">${mensagem}</p>
-    </div>`;
-  
-  elementos.resultado.innerHTML = html;
-  elementos.reiniciar.classList.remove("escondido");
-}
-
-// Função para reiniciar o quiz
-function reiniciarQuiz() {
-  // Reset das variáveis
-  indiceAtual = 0;
-  respostas = [];
-  quizAtual = null;
-  
-  // Volta para tela inicial
-  elementos.resultado.classList.add("escondido");
-  elementos.reiniciar.classList.add("escondido");
-  elementos.quiz.classList.add("escondido");
-  elementos.telaInicial.classList.remove("escondido");
+  html += `<h2>${mensagem}<br>Você acertou ${acertos} de ${questoes.length} questões (${porcentagem}%)</h2>`;
+  resultadoEl.innerHTML = html;
+  reiniciarEl.classList.remove("escondido");
 }
 
 // Event listeners
-elementos.proximoBtn.addEventListener("click", avancarQuestao);
-elementos.voltarBtn.addEventListener("click", voltarQuestao);
-elementos.btnReiniciar.addEventListener("click", reiniciarQuiz);
+btnReiniciar.addEventListener("click", () => comecarQuiz(0));
+proximoBtn.addEventListener("click", avancarQuestao);
+voltarBtn.addEventListener("click", voltarQuestao);
 
-// Prevenção de erros
-window.addEventListener("error", (e) => {
-  console.error("Erro no quiz:", e.error);
-});
-
-// Inicialização
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Quiz carregado com sucesso!");
+// Inicialização - mostrar a capa inicial
+document.addEventListener("DOMContentLoaded", function() {
+  capaInicial.classList.remove("escondido");
 });

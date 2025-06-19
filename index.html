@@ -11,18 +11,60 @@
   <!-- Container principal -->
   <div class="quiz-container">
 
-    <!-- Tela inicial -->
-    <div id="tela-inicial">
+    <!-- Capa inicial de boas-vindas -->
+    <div id="capa-inicial" class="tela">
+      <div class="capa-conteudo">
+        <h1 class="titulo-principal">🎯 Quiz Master</h1>
+        <p class="subtitulo">Desafie seus conhecimentos e teste suas habilidades!</p>
+        <div class="decoracao">
+          <div class="icone">📚</div>
+          <div class="icone">🧠</div>
+          <div class="icone">⭐</div>
+        </div>
+        <button onclick="irParaSelecao()" class="btn-jogar">
+          🎮 Jogar Agora
+        </button>
+      </div>
+    </div>
+
+    <!-- Tela de seleção de quiz -->
+    <div id="tela-selecao" class="tela escondido">
+      <div class="botao-voltar-container">
+        <button onclick="voltarParaCapa()" class="btn-voltar-capa">← Voltar</button>
+      </div>
       <h1>Escolha seu Quiz</h1>
-      <button onclick="comecarQuiz(0)" id="btn-logica">Quiz de Lógica da Programação</button>
-      <button onclick="comecarQuiz(1)" id="btn-ciencia" disabled>Quiz de Ciência</button>
-      <button onclick="comecarQuiz(2)" id="btn-geografia" disabled>Quiz de Geografia</button>
-      <button onclick="comecarQuiz(3)" id="btn-esportes" disabled>Quiz de Esportes</button>
-      <p class="aviso">Apenas o Quiz de Lógica da Programação está disponível</p>
+      <div class="quiz-opcoes">
+        <button onclick="comecarQuiz(0)" id="btn-logica" class="btn-quiz disponivel">
+          <div class="quiz-icon">💻</div>
+          <h3>Lógica da Programação</h3>
+          <p>Teste seus conhecimentos em programação</p>
+        </button>
+        <button onclick="comecarQuiz(1)" id="btn-ciencia" class="btn-quiz indisponivel" disabled>
+          <div class="quiz-icon">🔬</div>
+          <h3>Ciência</h3>
+          <p>Em breve...</p>
+        </button>
+        <button onclick="comecarQuiz(2)" id="btn-geografia" class="btn-quiz indisponivel" disabled>
+          <div class="quiz-icon">🌍</div>
+          <h3>Geografia</h3>
+          <p>Em breve...</p>
+        </button>
+        <button onclick="comecarQuiz(3)" id="btn-esportes" class="btn-quiz indisponivel" disabled>
+          <div class="quiz-icon">⚽</div>
+          <h3>Esportes</h3>
+          <p>Em breve...</p>
+        </button>
+      </div>
     </div>
 
     <!-- Perguntas e respostas -->
-    <div id="quiz" class="escondido">
+    <div id="quiz" class="tela escondido">
+      <div class="quiz-header">
+        <button onclick="voltarParaSelecao()" class="btn-voltar">← Voltar ao Menu</button>
+        <div class="progresso">
+          <span id="questao-numero">1/5</span>
+        </div>
+      </div>
       <h2 id="questao">Questão</h2>
       <div id="botao">
         <button class="btn">Alternativa 1</button>
@@ -39,11 +81,12 @@
     </div>
 
     <!-- Tela de resultado -->
-    <div id="resultado" class="escondido"></div>
+    <div id="resultado" class="tela escondido"></div>
 
     <!-- Botão de reiniciar -->
     <div id="reiniciar" class="escondido">
-      <button id="btn-reiniciar">Reiniciar Quiz</button>
+      <button id="btn-reiniciar">🔄 Jogar Novamente</button>
+      <button id="btn-menu" onclick="voltarParaSelecao()">📋 Escolher Outro Quiz</button>
     </div>
   </div>
 
