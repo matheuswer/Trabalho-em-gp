@@ -1,72 +1,71 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif; 
-  box-sizing: border-box; 
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(135deg, #2b234e, #aa9bf5); 
-  min-height: 100vh; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 20px; 
+  background: linear-gradient(135deg, #F5F1E3, #B4B8B4); /* Creme suave e Cinza Fumaça */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 /* Container principal do quiz */
 .quiz-container {
-  background-color: white; 
+  background-color: white;
   width: 100%;
-  max-width: 700px; 
-  padding: 40px; 
-  border-radius: 20px; 
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
-  text-align: center; 
-  color: #2c3e50; 
-  border: 3px solid #a8c0ff; 
+  max-width: 700px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  color: #5C3E2B; /* Marrom suave para o texto */
+  border: 3px solid #D6B497; /* Bordas douradas suaves */
 }
 
-/* título principal */
+/* Título principal */
 .quiz-container h1 {
-  font-size: 32px; 
-  margin-bottom: 30px; 
-  padding-bottom: 10px; 
-  border-bottom: 2px solid #7a9eff; 
-  color: #1f2e56; 
+  font-size: 32px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #D6B497; /* Bordas douradas suaves */
+  color: #5C3E2B; /* Marrom suave */
 }
-
 
 #questao {
   font-size: 22px;
   margin-bottom: 25px;
-  color: #34495e;
+  color: #1f0e01; /* Marrom médio */
 }
 
 /* Alternativas */
 .btn {
-  background: #eaf6ff;
-  color: #2c3e50; 
-  font-weight: 500; 
-  width: 100%; 
-  padding: 14px; 
-  margin: 10px 0; 
-  border: 2px solid #4d91c6; 
+  background: #F4E1C1; /* Amarelo suave */
+  color: #5C3E2B; /* Texto em tom de marrom */
+  font-weight: 500;
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 2px solid #D6B497; /* Bordas marrom claro */
   border-radius: 10px;
-  cursor: pointer; 
-  text-align: left; 
-  transition: 0.3s ease; 
+  cursor: pointer;
+  text-align: left;
+  transition: 0.3s ease;
 }
 
 /* Efeito dos botões quando o mouse passa por cima */
 .btn:hover:not(:disabled) {
-  background-color: #4d91c6; 
+  background-color: #D6B497; /* Tom mais dourado */
   color: white;
-  transform: scale(1.02); 
-  box-shadow: 0 6px 10px rgba(77, 145, 198, 0.6); 
+  transform: scale(1.02);
+  box-shadow: 0 6px 10px rgba(214, 180, 151, 0.6);
 }
 
-/* botões desabilitados */
+/* Botões desabilitados */
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -74,7 +73,7 @@ body {
 
 /* Começar Quiz */
 #tela-inicial button {
-  background-color: #6c5ce7; 
+  background-color: #F4C13B; /* Amarelo dourado */
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -88,15 +87,15 @@ body {
 
 /* Efeito hover do botão "Começar Quiz" */
 #tela-inicial button:hover {
-  background-color: #5a4cd4; 
+  background-color: #E3A22B; /* Amarelo mais escuro */
   transform: scale(1.05);
 }
 
 /* Botões "Próximo" e "Voltar" */
 #proximo-btn,
 #voltar-btn {
-  background-color: #a29bfe; 
-  color: #2c3e50;
+  background-color: #D6B497; /* Marrom claro/dourado */
+  color: #5C3E2B;
   font-weight: bold;
   padding: 12px 24px;
   margin: 20px 10px 0;
@@ -109,13 +108,13 @@ body {
 /* Efeito hover dos botões "Próximo" e "Voltar" */
 #proximo-btn:hover,
 #voltar-btn:hover {
-  background-color: #b2aaff;
+  background-color: #E3A22B;
   transform: scale(1.05);
 }
 
-/* Botão "Reiniciar Quiz"  */
+/* Botão "Reiniciar Quiz" */
 #btn-reiniciar {
-  background-color: #6c5ce7; 
+  background-color: #F4C13B; /* Amarelo dourado */
   color: white;
   font-weight: bold;
   padding: 12px 24px;
@@ -128,30 +127,30 @@ body {
 
 /* Hover do botão "Reiniciar" */
 #btn-reiniciar:hover {
-  background-color: #5a4cd4;
+  background-color: #E3A22B;
   transform: scale(1.05);
 }
 
-/*Respostas corretas */
+/* Respostas corretas */
 .correct {
-  background-color: #2ecc71 !important; 
+  background-color: #76C6B4 !important; /* Verde suave */
   color: white;
-  border-color: #2ecc71;
-  box-shadow: 0 0 10px #2ecc71;
+  border-color: #76C6B4;
+  box-shadow: 0 0 10px #76C6B4;
 }
 
-/*Respostas incorretas */
+/* Respostas incorretas */
 .incorrect {
-  background-color: #e74c3c !important; 
+  background-color: #E74C3C !important;
   color: white;
-  border-color: #e74c3c;
-  box-shadow: 0 0 10px #e74c3c;
+  border-color: #E74C3C;
+  box-shadow: 0 0 10px #E74C3C;
 }
 
-/*Alternativa selecionada */
+/* Alternativa selecionada */
 .selecionado {
-  border: 3px solid #6c5ce7; 
-  background-color: #dcd9ff; 
+  border: 3px solid #F4C13B; /* Amarelo dourado para a borda */
+  background-color: #F4E1C1; /* Amarelo suave */
 }
 
 .escondido {

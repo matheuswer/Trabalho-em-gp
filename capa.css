@@ -1,30 +1,102 @@
-body {
-
-
-    font-family: Arial, Helvetica, sans-serif;
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #020fc2, #910606);
+    color: #f0e6e6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
     text-align: center;
-    padding-top: 50px;
-    background-color: antiquewhite;
-}
-
-h1 {
-
-    margin-bottom: 40px;
-}
-
-.botao-tema {
-
-display:block;
-width: 250px;
-margin: 20px;
-padding: 15px;
-font-size: 18px;
-text-decoration: none;
-color: aquamarine;
-background-color: azure;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-transition: background-color 0.3;
-
-}
+  }
+  
+  
+  /* Título principal */
+  h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  
+  /* Mensagem de boas-vindas */
+  .mensagem-bemvindo {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #d0e6ff;
+  }
+  
+  /* Subtítulo */
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #f1f1f1;
+  }
+  
+  /* Lista de temas */
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    padding: 0;
+  }
+  
+  /* Estilização dos botões de tema */
+  .botao-tema {
+    display: block;
+    padding: 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #1e3a5f;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+  }
+  
+  /* Cores diferentes para cada tema */
+  #bntLogica {
+    border-color: #7550db; 
+  }
+  #bntmatematica {
+    border-color:#2b4a72;
+  }
+  #bntHistoria {
+    border-color: #c0392b; 
+  }
+  
+  /* Efeitos hover */
+  .botao-tema:hover {
+    background-color: #1e3a5f;
+    color: #ffffff;
+    transform: scale(1.05);
+    border-color: #ffffff;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 32px;
+    }
+  
+    h2 {
+      font-size: 22px;
+    }
+  
+    .botao-tema {
+      font-size: 16px;
+      padding: 14px;
+    }
+  }
+  
