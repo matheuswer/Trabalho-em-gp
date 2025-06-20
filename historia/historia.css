@@ -6,7 +6,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #F5F1E3, #B4B8B4); /* Creme suave e Cinza Fumaça */
+  background: linear-gradient(135deg, #F5F1E3, #B4B8B4); 
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@ body {
 /* Botões "Próximo" e "Voltar" */
 #proximo-btn,
 #voltar-btn {
-  background-color: #D6B497; /* Marrom claro/dourado */
+  background-color: #D6B497; 
   color: #5C3E2B;
   font-weight: bold;
   padding: 12px 24px;
@@ -134,7 +134,7 @@ body {
 
 /* Respostas corretas */
 .correct {
-  background-color: #76C6B4 !important; /* Verde suave */
+  background-color: #76C6B4 !important; 
   color: white;
   border-color: #76C6B4;
   box-shadow: 0 0 10px #76C6B4;
@@ -150,7 +150,7 @@ body {
 
 /* Alternativa selecionada */
 .selecionado {
-  border: 3px solid #F4C13B; /* A borda */
+  border: 3px solid #F4C13B; 
   background-color: #F4E1C1; 
 }
 

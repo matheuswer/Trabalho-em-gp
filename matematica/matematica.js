@@ -74,7 +74,7 @@ const questoes = [
     voltarBtn.style.display = "none";
     resultadoEl.classList.add("escondido");
     reiniciarEl.classList.add("escondido");
-     btnVoltar.classList.add("escondido"); // Esconde o botão de voltar à tela inicial
+     btnVoltar.classList.add("escondido"); 
   }
   
   function mostrarQuestao() {

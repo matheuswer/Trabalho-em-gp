@@ -6,7 +6,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #2b4a72, #579be7); /* Azul escuro e azul mais claro */
+  background: linear-gradient(135deg, #2b4a72, #579be7); 
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -23,8 +23,8 @@ body {
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   text-align: center;
-  color: #333333; /* Preto suave para o texto */
-  border: 3px solid #4A90E2; /* Bordas azuis */
+  color: #333333; 
+  border: 3px solid #4A90E2; 
 }
 
 /* Título principal */
@@ -32,25 +32,25 @@ body {
   font-size: 32px;
   margin-bottom: 30px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #4A90E2; /* Bordas em azul */
-  color: #1E3A5F; /* Azul escuro */
+  border-bottom: 2px solid #4A90E2; 
+  color: #1E3A5F; 
 }
 
 #questao {
   font-size: 22px;
   margin-bottom: 25px;
-  color: #07111d; /* Azul claro para destacar a questão */
+  color: #07111d; 
 }
 
 /* Alternativas */
 .btn {
-  background: #E6F7FF; /* Azul muito suave, quase branco */
-  color: #1E3A5F; /* Azul escuro para o texto */
+  background: #E6F7FF; 
+  color: #1E3A5F; 
   font-weight: 500;
   width: 100%;
   padding: 14px;
   margin: 10px 0;
-  border: 2px solid #4A90E2; /* Bordas azuis */
+  border: 2px solid #4A90E2; 
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
@@ -59,7 +59,7 @@ body {
 
 /* Efeito dos botões quando o mouse passa por cima */
 .btn:hover:not(:disabled) {
-  background-color: #4A90E2; /* Azul mais forte */
+  background-color: #4A90E2; 
   color: white;
   transform: scale(1.02);
   box-shadow: 0 6px 10px rgba(74, 144, 226, 0.6);
@@ -73,7 +73,7 @@ body {
 
 /* Começar Quiz */
 #tela-inicial button {
-  background-color: #4A90E2; /* Azul forte */
+  background-color: #4A90E2;
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -87,14 +87,14 @@ body {
 
 /* Efeito hover do botão "Começar Quiz" */
 #tela-inicial button:hover {
-  background-color: #357ABD; /* Azul mais escuro */
+  background-color: #357ABD; 
   transform: scale(1.05);
 }
 
 /* Botões "Próximo" e "Voltar" */
 #proximo-btn,
 #voltar-btn {
-  background-color: #4A90E2; /* Azul forte */
+  background-color: #4A90E2; 
   color: white;
   font-weight: bold;
   padding: 12px 24px;
@@ -114,7 +114,7 @@ body {
 
 /* Botão "Reiniciar Quiz" */
 #btn-reiniciar {
-  background-color: #4A90E2; /* Azul forte */
+  background-color: #4A90E2;
   color: white;
   font-weight: bold;
   padding: 12px 24px;
@@ -134,7 +134,7 @@ body {
 
 /* Respostas corretas */
 .correct {
-  background-color: #7ED321 !important; /* Verde claro para acertos */
+  background-color: #7ED321 !important; 
   color: white;
   border-color: #7ED321;
   box-shadow: 0 0 10px #7ED321;
@@ -142,7 +142,7 @@ body {
 
 /* Respostas incorretas */
 .incorrect {
-  background-color: #E74C3C !important; /* Vermelho para erros */
+  background-color: #E74C3C !important; 
   color: white;
   border-color: #E74C3C;
   box-shadow: 0 0 10px #E74C3C;
@@ -150,8 +150,8 @@ body {
 
 /* Alternativa selecionada */
 .selecionado {
-  border: 3px solid #4A90E2; /* Azul para a borda da alternativa selecionada */
-  background-color: #E6F7FF; /* Azul suave */
+  border: 3px solid #4A90E2; 
+  background-color: #E6F7FF; 
 }
 
 .escondido {
