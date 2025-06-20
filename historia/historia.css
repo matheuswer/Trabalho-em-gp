@@ -121,11 +121,12 @@ body {
   margin: 20px 10px 0;
   border: none;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: 0.3s ease;
 }
 
-/* Hover do botão "Reiniciar */
+/* Efeito do botão "Reiniciar */
 #btn-reiniciar:hover {
   background-color: #E3A22B;
   transform: scale(1.05);
@@ -155,4 +156,26 @@ body {
 
 .escondido {
   display: none;
+}
+
+#btn-voltar {
+
+  background-color: #F4C13B; 
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  margin: 20px 10px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+
+}
+
+/* Efeito do botão "Reiniciar */
+#btn-voltar:hover {
+
+transform: scale(1.05);
+
 }
