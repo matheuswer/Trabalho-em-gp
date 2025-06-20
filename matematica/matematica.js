@@ -20,18 +20,20 @@ const questoes = [
     {
       questao: "3- Raiz quadrada de 49?",
       alternativas: [
-        { text: "7", correct: true },
+        
         { text: "9", correct: false },
         { text: "6", correct: false },
-        { text: "5", correct: false }
+        { text: "5", correct: false },
+        { text: "7", correct: true },
       ]
     },
     {
       questao: "4- Qual é o dobro de 36 ?",
       alternativas: [
-        { text: "72", correct: true },
+        
         { text: "74", correct: false },
         { text: "68", correct: false },
+        { text: "72", correct: true },
         { text: "97", correct: false }
       ]
     },
@@ -60,6 +62,7 @@ const questoes = [
   let resultadoEl = document.getElementById("resultado");
   let reiniciarEl = document.getElementById("reiniciar");
   let btnReiniciar = document.getElementById("btn-reiniciar");
+  let btnVoltar = document.getElementById("btn-voltar");
   
   function comecarquiz() {
     telaInicial.classList.add("escondido"); 
@@ -71,6 +74,7 @@ const questoes = [
     voltarBtn.style.display = "none";
     resultadoEl.classList.add("escondido");
     reiniciarEl.classList.add("escondido");
+     btnVoltar.classList.add("escondido"); // Esconde o botão de voltar à tela inicial
   }
   
   function mostrarQuestao() {
@@ -153,7 +157,8 @@ const questoes = [
     html += `</ul>`;
     html += `<h2>Você acertou ${acertos} de ${questoes.length} questões.</h2>`;
     resultadoEl.innerHTML = html;                
-    reiniciarEl.classList.remove("escondido");   
+    reiniciarEl.classList.remove("escondido");  
+    btnVoltar.classList.remove("escondido"); 
   }
   
   // Quando clicar em "Reiniciar", começa tudo de novo

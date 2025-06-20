@@ -20,18 +20,20 @@ const questoes = [
   {
     questao: "3- Qual o resultado da expressão lógica: !(true && false)?",
     alternativas: [
-      { text: "true", correct: true },
+    
       { text: "false", correct: false },
       { text: "undefined", correct: false },
-      { text: "null", correct: false }
+      { text: "null", correct: false },
+      { text: "true", correct: true }
     ]
   },
   {
     questao: "4- Qual palavra-chave é usada para declarar uma função em JavaScript?",
     alternativas: [
-      { text: "function", correct: true },
+      
       { text: "var", correct: false },
       { text: "let", correct: false },
+      { text: "function", correct: true },
       { text: "if", correct: false }
     ]
   },

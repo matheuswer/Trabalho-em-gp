@@ -23,8 +23,8 @@ body {
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   text-align: center;
-  color: #5C3E2B; /* Marrom suave para o texto */
-  border: 3px solid #D6B497; /* Bordas douradas suaves */
+  color: #5C3E2B; 
+  border: 3px solid #D6B497; 
 }
 
 /* Título principal */
@@ -32,25 +32,25 @@ body {
   font-size: 32px;
   margin-bottom: 30px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #D6B497; /* Bordas douradas suaves */
-  color: #5C3E2B; /* Marrom suave */
+  border-bottom: 2px solid #D6B497; 
+  color: #5C3E2B; 
 }
 
 #questao {
   font-size: 22px;
   margin-bottom: 25px;
-  color: #1f0e01; /* Marrom médio */
+  color: #1f0e01; 
 }
 
 /* Alternativas */
 .btn {
-  background: #F4E1C1; /* Amarelo suave */
-  color: #5C3E2B; /* Texto em tom de marrom */
+  background: #F4E1C1; 
+  color: #5C3E2B; 
   font-weight: 500;
   width: 100%;
   padding: 14px;
   margin: 10px 0;
-  border: 2px solid #D6B497; /* Bordas marrom claro */
+  border: 2px solid #D6B497; 
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
@@ -59,7 +59,7 @@ body {
 
 /* Efeito dos botões quando o mouse passa por cima */
 .btn:hover:not(:disabled) {
-  background-color: #D6B497; /* Tom mais dourado */
+  background-color: #D6B497; 
   color: white;
   transform: scale(1.02);
   box-shadow: 0 6px 10px rgba(214, 180, 151, 0.6);
@@ -73,7 +73,7 @@ body {
 
 /* Começar Quiz */
 #tela-inicial button {
-  background-color: #F4C13B; /* Amarelo dourado */
+  background-color: #F4C13B; 
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -87,7 +87,7 @@ body {
 
 /* Efeito hover do botão "Começar Quiz" */
 #tela-inicial button:hover {
-  background-color: #E3A22B; /* Amarelo mais escuro */
+  background-color: #E3A22B; 
   transform: scale(1.05);
 }
 
@@ -112,9 +112,9 @@ body {
   transform: scale(1.05);
 }
 
-/* Botão "Reiniciar Quiz" */
+/* Botão Reiniciar Quiz */
 #btn-reiniciar {
-  background-color: #F4C13B; /* Amarelo dourado */
+  background-color: #F4C13B; 
   color: white;
   font-weight: bold;
   padding: 12px 24px;
@@ -125,7 +125,7 @@ body {
   transition: 0.3s ease;
 }
 
-/* Hover do botão "Reiniciar" */
+/* Hover do botão "Reiniciar */
 #btn-reiniciar:hover {
   background-color: #E3A22B;
   transform: scale(1.05);
@@ -149,8 +149,8 @@ body {
 
 /* Alternativa selecionada */
 .selecionado {
-  border: 3px solid #F4C13B; /* Amarelo dourado para a borda */
-  background-color: #F4E1C1; /* Amarelo suave */
+  border: 3px solid #F4C13B; /* A borda */
+  background-color: #F4E1C1; 
 }
 
 .escondido {

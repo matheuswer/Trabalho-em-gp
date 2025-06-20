@@ -20,10 +20,11 @@ const questoes = [
     {
       questao: "3- Qual povo viveu no Brasil antes da chegada dos portugueses?",
       alternativas: [
-        { text: " Índios (Povos indígenas)", correct: true },
+        
         { text: " Espanhóis", correct: false },
         { text: " Italianos", correct: false },
-        { text: " Franceses", correct: false }
+        { text: " Franceses", correct: false },
+        { text: " Indígenas", correct: true },
       ]
     },
     {
@@ -60,6 +61,7 @@ const questoes = [
   let resultadoEl = document.getElementById("resultado");
   let reiniciarEl = document.getElementById("reiniciar");
   let btnReiniciar = document.getElementById("btn-reiniciar");
+  let btnVoltar = document.getElementById("btn-voltar");
   
   function comecarquiz() {
     telaInicial.classList.add("escondido"); 
@@ -71,6 +73,7 @@ const questoes = [
     voltarBtn.style.display = "none";
     resultadoEl.classList.add("escondido");
     reiniciarEl.classList.add("escondido");
+     btnVoltar.classList.add("escondido");
   }
   
   function mostrarQuestao() {
@@ -153,7 +156,8 @@ const questoes = [
     html += `</ul>`;
     html += `<h2>Você acertou ${acertos} de ${questoes.length} questões.</h2>`;
     resultadoEl.innerHTML = html;                
-    reiniciarEl.classList.remove("escondido");   
+    reiniciarEl.classList.remove("escondido");
+    btnVoltar.classList.remove("escondido"); // Mostra o botão de voltar ao final   
   }
   
   // Quando clicar em "Reiniciar", começa tudo de novo

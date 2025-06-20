@@ -106,14 +106,14 @@ body {
   transition: 0.3s ease;
 }
 
-/* Efeito hover dos botões "Próximo" e "Voltar" */
+/* Efeito hover dos botões Próximo e Voltar */
 #proximo-btn:hover,
 #voltar-btn:hover {
   background-color: #b2aaff;
   transform: scale(1.05);
 }
 
-/* Botão "Reiniciar Quiz"  */
+/* Botão Reiniciar Quiz  */
 #btn-reiniciar {
   background-color: #6c5ce7; 
   color: white;
@@ -126,7 +126,7 @@ body {
   transition: 0.3s ease;
 }
 
-/* Hover do botão "Reiniciar" */
+/* Hover do botão Reiniciar */
 #btn-reiniciar:hover {
   background-color: #5a4cd4;
   transform: scale(1.05);
@@ -157,3 +157,4 @@ body {
 .escondido {
   display: none;
 }
+
