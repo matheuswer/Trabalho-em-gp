@@ -1,3 +1,5 @@
+
+//Definição das perguntas
 const questoes = [
     {
       questao: "1- Quem foi o primeiro imperador do Brasil? ?",
@@ -47,11 +49,13 @@ const questoes = [
     }
   ];
   
+  //Variável de controle
   let indiceAtual = 0;
   
-  // Armazena as respostas do usuário 
+  // Armazena as respostas do usuário e é uma variável de controle
   let respostas = new Array(questoes.length).fill(null);
   
+  // Seleção de elementos do html
   let telaInicial = document.getElementById("tela-inicial");
   let quiz = document.getElementById("quiz");
   let questaoEl = document.getElementById("questao");
@@ -63,6 +67,8 @@ const questoes = [
   let btnReiniciar = document.getElementById("btn-reiniciar");
   let btnVoltar = document.getElementById("btn-voltar");
   
+  // Função de começar quiz
+
   function comecarquiz() {
     telaInicial.classList.add("escondido"); 
     quiz.classList.remove("escondido");     
@@ -76,6 +82,7 @@ const questoes = [
      btnVoltar.classList.add("escondido");
   }
   
+ // Mostrar Questão
   function mostrarQuestao() {
     const atual = questoes[indiceAtual];             
     questaoEl.textContent = atual.questao;           
@@ -107,6 +114,7 @@ const questoes = [
     proximoBtn.style.display = respostas[indiceAtual] !== null ? "inline-block" : "none";
   }
   
+    // Botão de avançar
   function avancarQuestao() {
     if (respostas[indiceAtual] === null) {
       alert("Por favor, selecione uma alternativa antes de continuar.");
@@ -121,6 +129,7 @@ const questoes = [
     }
   }
   
+  // Botão de voltar
   function voltarQuestao() {
     if (indiceAtual > 0) {
       indiceAtual--;           
